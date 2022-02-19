@@ -1,0 +1,509 @@
+{% extends 'shared/_MainLayout.html '%}
+{% block content %}
+<div class="listar-themetabs"><a>
+</a>
+
+<div class="tab-content listar-tabcontentloginregistered">
+    <h2>ورود به حساب کاربـری </h2>
+
+    <div role="tabpanel" class="tab-pane fade active in" id="listar-loging">
+        <form class="listar-formtheme listar-formlogin" method="post">
+            {% csrf_token %}
+            <!--{{login_form}}-->
+            <fieldset>
+                <div class="form-group listar-inputwithicon">
+                     
+                     <label for="{{ login_form.user_name.id_for_label }}">{{ login_form.user_name.label }}</label>
+                     {{ login_form.user_name }}
+                     {% for error in login_form.user_name.errors %}
+                         <p style="color: red;">{{ error }}</p>
+                     {% endfor %}
+                    <!--<input type="text" name="username" class="form-control" placeholder="نام کاربری یا ایمیل">-->                 
+                </div>
+                <div class="form-group listar-inputwithicon">
+                   <!-- <input type="password" name="password" class="form-control" placeholder="رمز عبور">-->
+                   <label for="{{ login_form.password.id_for_label }}">{{ login_form.password.label }}</label>
+                   {{ login_form.password }}
+                   {% for error in login_form.password.errors %}
+                       <p style="color: red;">{{ error }}</p>
+                   {% endfor %}
+                </div>
+                <div class="form-group">
+                    <div class="listar-checkbox">
+                        <input type="checkbox" name="remember" id="rememberpass2">
+                        <label for="rememberpass2">مرا به خاطر بسپار</label>
+                    </div>
+                    <span><a href="#">رمز عبورخود را فراموش کرده اید</a></span>
+                </div>
+                <button class="listar-btn listar-btngreen">ورود</button>
+               <!-- <form class="woocommerce-form woocommerce-form-login login" method="post">
+                    <input type="hidden" name="dig_nounce" class="dig_nounce" value="5468f5afc4">
+                    <p class="woocommerce-FormRow woocommerce-FormRow--wide form-row form-row-wide " id="dig_wc_log_otp_container" otp="1" style="display: none;">
+                    <label for="dig_wc_log_otp">کد تایید <span class="required">*</span></label>
+                    <input type="tel" class="input-text" name="dig_wc_log_otp" id="dig_wc_log_otp" />
+                    </p>
+                    <input type="hidden" name="username" id="loginuname" value="" />
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                    <label for="username">نام کاربری یا آدرس ایمیل&nbsp;<span class="required">*</span></label>
+                    <input type="text" class="woocommerce-Input woocommerce-Input--text input-text" name="username" id="username" autocomplete="username" value="" /> </p>
+                    <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+                    <label for="password">گذرواژه&nbsp;<span class="required">*</span></label>
+                    <input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password" />
+                    </p>
+                    <p class="aiowps-captcha"><label for="aiowps-captcha-answer">لطفا پاسخ را به عدد انگلیسی وارد کنید:</label><div class="aiowps-captcha-equation"><strong>سه &#43; 15 = <input type="hidden" name="aiowps-captcha-string-info" id="aiowps-captcha-string-info" value="eakiy4syw4" /><input type="hidden" name="aiowps-captcha-temp-string" id="aiowps-captcha-temp-string" value="1643054289" /><input type="text" size="2" id="aiowps-captcha-answer" name="aiowps-captcha-answer" value="" autocomplete="off" /></strong></div></p>
+                    <p class="form-row">
+                    <label class="woocommerce-form__label woocommerce-form__label-for-checkbox woocommerce-form-login__rememberme">
+                    <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span>مرا به خاطر بسپار</span>
+                    </label>
+                    </p>
+                    <p class="woocommerce-LostPassword lost_password">
+                    <a href="#">گذرواژه خود را فراموش کرده اید؟</a>
+                    </p>
+                    <input type="hidden" id="wc_login_cd" val="1">
+                    <p class="form-row form-row-wide">
+                    <input type="hidden" id="wc_code_dig" val="">
+                    <div class="loginViaContainer">
+                    
+                    <button onclick="return false" class="listar-btn listar-btngreen" name="loginviasms">ورود با کد یکبارمصرف</button>
+                    </div>
+                    <div class="dig_resendotp dig_wc_login_resend" id="dig_man_resend_otp_btn" dis='1'>ارسال مجدد کد یکبار مصرف <span>(00:<span>120</span>)</span></div> </p>
+                    </form>-->
+            </fieldset>
+        </form>
+    </div>
+</div>
+</div>
+<div class="listar-shareor"><span>یا</span></div>
+<div class="listar-signupwith">
+    <h2>... ورود با</h2>
+    <ul class="listar-signinloginwithsocialaccount">
+        <li class="listar-facebook"><a href="javascript:void(0);"><i class="icon-facebook-1"></i><span>Facebook</span></a></li>
+        <li class="listar-twitter"><a href="javascript:void(0);"><i class="icon-twitter-1"></i><span>Twitter</span></a></li>
+        <li class="listar-googleplus"><a href="javascript:void(0);"><i class="icon-google4"></i><span>Google +</span></a></li>
+    </ul>
+</div>
+</div>
+<br>
+<br>
+<link rel='stylesheet' id='select2-css' href='https://webkima.com/wp-content/plugins/woocommerce/assets/css/select2.css?ver=6.1.1' type='text/css' media='all' />
+<link rel='stylesheet' id='wpast-styles-css' href='https://webkima.com/wp-content/plugins/wp-advanced-support-ticket/assets/css/styles.css?ver=13.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='wpast-styles-rtl-css' href='https://webkima.com/wp-content/plugins/wp-advanced-support-ticket/assets/css/rtl.css?ver=13.9.3' type='text/css' media='all' />
+<link rel='stylesheet' id='woo-wallet-style-rtl-css' href='https://webkima.com/wp-content/plugins/woo-wallet/assets/css/frontend-rtl.css?ver=1.3.22' type='text/css' media='all' />
+<link rel='stylesheet' id='woo-wallet-payment-jquery-ui-css' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css?ver=1.12.1' type='text/css' media='' />
+<link rel='stylesheet' id='dashicons-css' href='https://webkima.com/wp-includes/css/dashicons.min.css?ver=14e7aef3e674f5928b125619481d8afc' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-datatables-style-css' href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css?ver=14e7aef3e674f5928b125619481d8afc' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-datatables-responsive-style-css' href='//cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css?ver=14e7aef3e674f5928b125619481d8afc' type='text/css' media='all' />
+<link rel='stylesheet' id='flatsome-main-rtl-css' href='https://webkima.com/wp-content/themes/flatsome/assets/css/flatsome-rtl.css?ver=3.14.1' type='text/css' media='all' />
+<style id='flatsome-main-inline-css' type='text/css'>
+@font-face {
+				font-family: "fl-icons";
+				font-display: block;
+				src: url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot?v=3.14.1);
+				src:
+					url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.eot#iefix?v=3.14.1) format("embedded-opentype"),
+					url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff2?v=3.14.1) format("woff2"),
+					url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.ttf?v=3.14.1) format("truetype"),
+					url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.woff?v=3.14.1) format("woff"),
+					url(https://webkima.com/wp-content/themes/flatsome/assets/css/icons/fl-icons.svg?v=3.14.1#fl-icons) format("svg");
+			}
+</style>
+<link rel='stylesheet' id='flatsome-shop-rtl-css' href='https://webkima.com/wp-content/themes/flatsome/assets/css/flatsome-shop-rtl.css?ver=3.14.1' type='text/css' media='all' />
+<link rel='stylesheet' id='flatsome-style-css' href='https://webkima.com/wp-content/themes/flatsome-child/style.css?ver=3.0' type='text/css' media='all' />
+<script type='text/javascript' src='https://webkima.com/wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' id='zxcvbn-async-js-extra'>
+/* <![CDATA[ */
+var _zxcvbnSettings = {"src":"https:\/\/webkima.com\/wp-includes\/js\/zxcvbn.min.js"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-includes/js/zxcvbn-async.min.js?ver=1.0' id='zxcvbn-async-js'></script>
+<script type='text/javascript' src='https://www.google.com/recaptcha/api.js?hl=fa&#038;ver=14e7aef3e674f5928b125619481d8afc' id='wpast-recaptcha-js'></script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/wp-notification-bars/public/js/wp-notification-bars-public.js?ver=1.0.11' id='wp-notification-bars-js'></script>
+<script type='text/javascript' src='//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js?ver=14e7aef3e674f5928b125619481d8afc' id='jquery-datatables-script-js'></script>
+<script type='text/javascript' src='//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js?ver=14e7aef3e674f5928b125619481d8afc' id='jquery-datatables-responsive-script-js'></script>
+<script type='text/javascript' id='wc-endpoint-wallet-js-extra'>
+/* <![CDATA[ */
+var wallet_param = {"ajax_url":"https:\/\/webkima.com\/wp-admin\/admin-ajax.php","transaction_table_nonce":"3e6e836ffd","search_by_user_email":"1","i18n":{"emptyTable":"\u0647\u06cc\u0686 \u062a\u0631\u0627\u06a9\u0646\u0634\u06cc \u067e\u06cc\u062f\u0627 \u0646\u0634\u062f","lengthMenu":"\u0646\u0645\u0627\u06cc\u0634 _MENU_ \u0645\u0648\u0631\u062f","info":"\u0646\u0645\u0627\u06cc\u0634 _START_  \u0628\u0647 _END_  \u0627\u0632 _TOTAL_  \u0645\u0648\u0631\u062f","infoFiltered":"(\u0641\u06cc\u0644\u062a\u0631 \u0634\u062f\u0647 \u0627\u0632 \u0645\u062c\u0645\u0648\u0639 _MAX_ \u0645\u0648\u0631\u062f)","infoEmpty":"\u0646\u0645\u0627\u06cc\u0634 0 \u062a\u0627 0 \u0627\u0632 0 \u0648\u0631\u0648\u062f\u06cc","paginate":{"first":"\u0627\u0648\u0644\u06cc\u0646","last":"\u0622\u062e\u0631\u06cc\u0646","next":"\u0628\u0639\u062f\u06cc","previous":"\u0642\u0628\u0644\u06cc"},"non_valid_email_text":"\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u0627\u06cc\u0645\u06cc\u0644 \u0645\u0639\u062a\u0628\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f","no_resualt":"\u0646\u062a\u06cc\u062c\u0647 \u0627\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f","zeroRecords":"\u0647\u06cc\u0686 \u0631\u06a9\u0648\u0631\u062f\u06cc \u0645\u0646\u0637\u0628\u0642\u06cc \u06cc\u0627\u0641\u062a \u0646\u0634\u062f","inputTooShort":"\u0644\u0637\u0641\u0627 3 \u06cc\u0627 \u0628\u06cc\u0634\u062a\u0631 \u0627\u0632 3 \u06a9\u0627\u0631\u0627\u06a9\u062a\u0631 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u06cc\u06cc\u062f","searching":"\u062f\u0631 \u062d\u0627\u0644 \u062c\u0633\u062a\u062c\u0648 \u2026","processing":"\u062f\u0631 \u062d\u0627\u0644 \u067e\u0631\u062f\u0627\u0632\u0634...","search":"\u062c\u0633\u062a\u062c\u0648 \u0628\u0631 \u0627\u0633\u0627\u0633 \u062a\u0627\u0631\u06cc\u062e:","placeholder":"yyyy-mm-dd"},"columns":[{"data":"id","title":"\u0634\u0646\u0627\u0633\u0647","orderable":false},{"data":"credit","title":"\u0627\u0641\u0631\u0627\u06cc\u0634 \u0645\u0628\u0644\u063a","orderable":false},{"data":"debit","title":"\u06a9\u0633\u0631 \u0645\u0628\u0644\u063a","orderable":false},{"data":"details","title":"\u062c\u0632\u06cc\u06cc\u0627\u062a","orderable":false},{"data":"date","title":"\u062a\u0627\u0631\u06cc\u062e","orderable":false}]};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woo-wallet/assets/js/frontend/wc-endpoint-wallet.min.js?ver=1.3.22' id='wc-endpoint-wallet-js'></script>
+<meta name="wpast-nonce" content="4b7c1a71b1"><style type="text/css">.wpast-wrap.wpast-view-ticket .wpast-start-ticket .wpast-ticket-content p{font-size: 1.2em !important;}
+.wpast-wrap.wpast-view-ticket .wpast-replies .wpast-reply-item .wpast-content {font-size: 1.2em;}
+.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket .wpast-ticket-content .wpast-header-text{
+    border-bottom: 1px dashed #cbd3dd !important;
+}
+.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket .wpast-ticket-content .wpast-footer-text{
+    border-top: 1px dashed #cbd3dd !important;
+}
+.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket .wpast-ticket-content a {
+    color: #00ffff;
+}
+.wpast-wrap p {
+    overflow-wrap: break-word !important;
+  font-size: 15px!important;
+}
+textarea#wpast-content {
+    font-size: 16px;
+}
+.wpast-ticket-content {
+    font-size: 15px;
+}
+.wpast-footer-text p,.wpast-header-text {
+    font-size: 13px !important;
+}
+.wpast-new-ticket {
+    font-size: 20px !important;
+    padding: 20px !important;
+    line-height: 0px !important;
+}
+.wpast-wrap .wpast-help-text {
+    background: unset;
+    font-size: 15px !important;
+}
+.wpast-wrap .wpast-help-text p {
+    font-size: 15px!important;
+}
+.wpast-wrap .wpast-btn-success {
+    font-size: 18px;
+}
+.wpast-ticket-content {
+    overflow-wrap: break-word !important;
+}
+@media (min-width: 768px){
+.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket .wpast-ticket-content {
+    width: 100%;
+}}</style>
+<style type="text/css">
+.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket.wpast-from-admin .wpast-ticket-content {background: #e0f7fa}.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket.wpast-from-admin .wpast-ticket-content, .wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket.wpast-from-admin .wpast-ticket-content a {color: #000000}.wpast-wrap.wpast-view-ticket .wpast-main-content .wpast-ticket.wpast-from-vendor .wpast-ticket-content {background: #e0f7fa}</style>
+
+<style id="custom-css" type="text/css">:root {--primary-color: #7c4dff;}.full-width .ubermenu-nav, .container, .row{max-width: 1270px}.row.row-collapse{max-width: 1240px}.row.row-small{max-width: 1262.5px}.row.row-large{max-width: 1300px}.header-main{height: 75px}#logo img{max-height: 75px}#logo{width:150px;}#logo a{max-width:200px;}.stuck #logo img{padding:7px 0;}.header-bottom{min-height: 55px}.header-top{min-height: 32px}.transparent .header-main{height: 260px}.transparent #logo img{max-height: 260px}.has-transparent + .page-title:first-of-type,.has-transparent + #main > .page-title,.has-transparent + #main > div > .page-title,.has-transparent + #main .page-header-wrapper:first-of-type .page-title{padding-top: 290px;}.header.show-on-scroll,.stuck .header-main{height:50px!important}.stuck #logo img{max-height: 50px!important}.search-form{ width: 100%;}.header-bottom {background-color: #f1f1f1}.top-bar-nav > li > a{line-height: 16px }.header-main .nav > li > a{line-height: 16px }.stuck .header-main .nav > li > a{line-height: 10px }@media (max-width: 549px) {.header-main{height: 60px}#logo img{max-height: 60px}}.main-menu-overlay{background-color: #000000}.nav-dropdown{border-radius:3px}.nav-dropdown{font-size:90%}.header-top{background-color:#1a237e!important;}.blog-wrapper{background-color: #f8f9fb;}/* Color */.accordion-title.active, .has-icon-bg .icon .icon-inner,.logo a, .primary.is-underline, .primary.is-link, .badge-outline .badge-inner, .nav-outline > li.active> a,.nav-outline >li.active > a, .cart-icon strong,[data-color='primary'], .is-outline.primary{color: #7c4dff;}/* Color !important */[data-text-color="primary"]{color: #7c4dff!important;}/* Background Color */[data-text-bg="primary"]{background-color: #7c4dff;}/* Background */.scroll-to-bullets a,.featured-title, .label-new.menu-item > a:after, .nav-pagination > li > .current,.nav-pagination > li > span:hover,.nav-pagination > li > a:hover,.has-hover:hover .badge-outline .badge-inner,button[type="submit"], .button.wc-forward:not(.checkout):not(.checkout-button), .button.submit-button, .button.primary:not(.is-outline),.featured-table .title,.is-outline:hover, .has-icon:hover .icon-label,.nav-dropdown-bold .nav-column li > a:hover, .nav-dropdown.nav-dropdown-bold > li > a:hover, .nav-dropdown-bold.dark .nav-column li > a:hover, .nav-dropdown.nav-dropdown-bold.dark > li > a:hover, .is-outline:hover, .tagcloud a:hover,.grid-tools a, input[type='submit']:not(.is-form), .box-badge:hover .box-text, input.button.alt,.nav-box > li > a:hover,.nav-box > li.active > a,.nav-pills > li.active > a ,.current-dropdown .cart-icon strong, .cart-icon:hover strong, .nav-line-bottom > li > a:before, .nav-line-grow > li > a:before, .nav-line > li > a:before,.banner, .header-top, .slider-nav-circle .flickity-prev-next-button:hover svg, .slider-nav-circle .flickity-prev-next-button:hover .arrow, .primary.is-outline:hover, .button.primary:not(.is-outline), input[type='submit'].primary, input[type='submit'].primary, input[type='reset'].button, input[type='button'].primary, .badge-inner{background-color: #7c4dff;}/* Border */.nav-vertical.nav-tabs > li.active > a,.scroll-to-bullets a.active,.nav-pagination > li > .current,.nav-pagination > li > span:hover,.nav-pagination > li > a:hover,.has-hover:hover .badge-outline .badge-inner,.accordion-title.active,.featured-table,.is-outline:hover, .tagcloud a:hover,blockquote, .has-border, .cart-icon strong:after,.cart-icon strong,.blockUI:before, .processing:before,.loading-spin, .slider-nav-circle .flickity-prev-next-button:hover svg, .slider-nav-circle .flickity-prev-next-button:hover .arrow, .primary.is-outline:hover{border-color: #7c4dff}.nav-tabs > li.active > a{border-top-color: #7c4dff}.widget_shopping_cart_content .blockUI.blockOverlay:before { border-left-color: #7c4dff }.woocommerce-checkout-review-order .blockUI.blockOverlay:before { border-left-color: #7c4dff }/* Fill */.slider .flickity-prev-next-button:hover svg,.slider .flickity-prev-next-button:hover .arrow{fill: #7c4dff;}/* Background Color */[data-icon-label]:after, .secondary.is-underline:hover,.secondary.is-outline:hover,.icon-label,.button.secondary:not(.is-outline),.button.alt:not(.is-outline), .badge-inner.on-sale, .button.checkout, .single_add_to_cart_button, .current .breadcrumb-step{ background-color:#1a237e; }[data-text-bg="secondary"]{background-color: #1a237e;}/* Color */.secondary.is-underline,.secondary.is-link, .secondary.is-outline,.stars a.active, .star-rating:before, .woocommerce-page .star-rating:before,.star-rating span:before, .color-secondary{color: #1a237e}/* Color !important */[data-text-color="secondary"]{color: #1a237e!important;}/* Border */.secondary.is-outline:hover{border-color:#1a237e}.success.is-underline:hover,.success.is-outline:hover,.success{background-color: #04c4c9}.success-color, .success.is-link, .success.is-outline{color: #04c4c9;}.success-border{border-color: #04c4c9!important;}/* Color !important */[data-text-color="success"]{color: #04c4c9!important;}/* Background Color */[data-text-bg="success"]{background-color: #04c4c9;}.alert.is-underline:hover,.alert.is-outline:hover,.alert{background-color: #551bf8}.alert.is-link, .alert.is-outline, .color-alert{color: #551bf8;}/* Color !important */[data-text-color="alert"]{color: #551bf8!important;}/* Background Color */[data-text-bg="alert"]{background-color: #551bf8;}body{font-family:"Lato", sans-serif}body{font-weight: 400}body{color: #343352}.nav > li > a {font-family:"Lato", sans-serif;}.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-family:"Lato", sans-serif;}.nav > li > a {font-weight: 0;}.mobile-sidebar-levels-2 .nav > li > ul > li > a {font-weight: 0;}h1,h2,h3,h4,h5,h6,.heading-font, .off-canvas-center .nav-sidebar.nav-vertical > li > a{font-family: "Lato", sans-serif;}h1,h2,h3,h4,h5,h6,.heading-font,.banner h1,.banner h2{font-weight: 0;}h1,h2,h3,h4,h5,h6,.heading-font{color: #1a237e;}.breadcrumbs{text-transform: none;}button,.button{text-transform: none;}.nav > li > a, .links > li > a{text-transform: none;}.section-title span{text-transform: none;}h3.widget-title,span.widget-title{text-transform: none;}.alt-font{font-family: "Dancing Script", sans-serif;}.alt-font{font-weight: 400!important;}.header:not(.transparent) .header-nav-main.nav > li > a:hover,.header:not(.transparent) .header-nav-main.nav > li.active > a,.header:not(.transparent) .header-nav-main.nav > li.current > a,.header:not(.transparent) .header-nav-main.nav > li > a.active,.header:not(.transparent) .header-nav-main.nav > li > a.current{color: #1a237e;}.header-nav-main.nav-line-bottom > li > a:before,.header-nav-main.nav-line-grow > li > a:before,.header-nav-main.nav-line > li > a:before,.header-nav-main.nav-box > li > a:hover,.header-nav-main.nav-box > li.active > a,.header-nav-main.nav-pills > li > a:hover,.header-nav-main.nav-pills > li.active > a{color:#FFF!important;background-color: #1a237e;}a{color: #1a237e;}a:hover{color: #551bf8;}.tagcloud a:hover{border-color: #551bf8;background-color: #551bf8;}.shop-page-title.featured-title .title-overlay{background-color: rgba(0,0,0,0.3);}.current .breadcrumb-step, [data-icon-label]:after, .button#place_order,.button.checkout,.checkout-button,.single_add_to_cart_button.button{background-color: #4caf50!important }.has-equal-box-heights .box-image {padding-top: 100%;}.badge-inner.on-sale{background-color: #4203f5}.star-rating span:before,.star-rating:before, .woocommerce-page .star-rating:before, .stars a:hover:after, .stars a.active:after{color: #ffb300}.price del, .product_list_widget del, del .woocommerce-Price-amount { color: #7c4dff; }ins .woocommerce-Price-amount { color: #1a237e; }input[type='submit'], input[type="button"], button:not(.icon), .button:not(.icon){border-radius: 4px!important}.pswp__bg,.mfp-bg.mfp-ready{background-color: rgba(0,0,0,0.5)}@media screen and (min-width: 550px){.products .box-vertical .box-image{min-width: 247px!important;width: 247px!important;}}.footer-1{background-color: #1a237e}.footer-2{background-color: #1a237e}.absolute-footer, html{background-color: #000035}.label-new.menu-item > a:after{content:"جدید";}.label-hot.menu-item > a:after{content:"جدید";}.label-sale.menu-item > a:after{content:"حراج";}.label-popular.menu-item > a:after{content:"محبوب";}</style> <style type="text/css" id="wp-custom-css">
+			.wpast-wrap.wpast-view-ticket .wpast-replies .wpast-reply-item .wpast-content {
+    word-break: break-word;
+}
+ol, ul {
+    line-height: 1.7em !important;
+}
+audio:focus, audio:active {
+outline:none;
+}
+#comments .description p {
+    font-style: normal !important;
+    font-size: 1em !important;
+}
+.woocommerce-additional-fields {
+    display: none;
+}		</style>
+</head>
+<body class="rtl page-template-default page page-id-8 theme-flatsome woocommerce-account woocommerce-page woocommerce-no-js full-width header-shadow lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow mobile-submenu-slide mobile-submenu-slide-levels-1">
+<a class="skip-link screen-reader-text" href="#main">Skip to content</a>
+<div id="wrapper">
+
+
+
+</div>
+<div id="main-menu" class="mobile-sidebar no-scrollbar mfp-hide mobile-sidebar-slide mobile-sidebar-levels-1" data-levels="1">
+<div class="sidebar-menu no-scrollbar ">
+<ul class="nav nav-sidebar nav-vertical nav-uppercase nav-slide">
+<li class="header-search-form search-form html relative has-icon">
+<div class="header-search-form-wrapper">
+<div class="searchform-wrapper ux-search-box relative form-flat is-normal"><form role="search" method="get" class="searchform" action="https://webkima.com/">
+<div class="flex-row relative">
+<div class="flex-col flex-grow">
+<label class="screen-reader-text" for="woocommerce-product-search-field-1">جستجو برای:</label>
+<input type="search" id="woocommerce-product-search-field-1" class="search-field mb-0" placeholder="جستجو در آکادمی وبکیما" value="" name="s" />
+<input type="hidden" name="post_type" value="product" />
+</div>
+<div class="flex-col">
+<button type="submit" value="جستجو" class="ux-search-submit submit-button secondary button icon mb-0" aria-label="ارسال">
+<i class="icon-search"></i> </button>
+</div>
+</div>
+<div class="live-search-results text-left z-top"></div>
+</form>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21537"><a href="https://webkima.com/tools/">ابزارها</a></li>
+<li class="account-item has-icon menu-item">
+<a href="https://webkima.com/my-account/" class="nav-top-link nav-top-not-logged-in">
+<span class="header-account-title">
+ورود </span>
+</a>
+</li>
+<li class="html header-social-icons ml-0">
+<div class="social-icons follow-icons"><a href="https://www.instagram.com/webkima/" target="_blank" rel="noopener noreferrer nofollow" data-label="Instagram" class="icon plain  instagram tooltip" title="ما در اینستاگرم دنبال کنید" aria-label="ما در اینستاگرم دنبال کنید"><i class="icon-instagram"></i></a><a href="https://" target="_blank" data-label="Telegram" rel="noopener noreferrer nofollow" class="icon plain telegram tooltip" title="Follow on Telegram" aria-label="Follow on Telegram"><i class="icon-telegram"></i></a></div></li> </ul>
+</div>
+</div>
+<style>
+        .dig_bdy_container {
+    height: 100%;
+    width: 100%;
+    background-image: url(https://webkima.com/wp-content/uploads/2020/03/webkima-purple_angles-svg.svg);
+    background-position: center center;
+    background-size: cover;
+}
+.header {
+    padding-top: 0 !important;
+}
+.logocontainer .logo {
+    max-width: 70px !important;
+}
+input.not-empty,input.empty {
+    width: 100% !important;
+}
+.dig_ma-box form {
+    padding: 0 !important;
+}
+button.lighte.bgdark.button,div#dig_login_va_otp {
+    background: #7C4DFF !important;
+    transition: 0.4s;
+}
+button.lighte.bgdark.button:hover,div#dig_login_va_otp:hover {
+    background: #561ff1 !important;
+}
+.backtoLoginContainer a, .signupbutton.transupbutton.bgtransborderdark {
+    background: #7c4dff2e !important;
+    color: #5622e4!important;
+    font-weight: 500 !important;
+    border-radius: 4px !important;
+    margin-top: 20px;
+padding: 10px;
+}
+.digits-countrycode-search {
+    display: none !important;
+}
+.signupbutton.transupbutton.bgtransborderdark {
+    padding: 0 !important;
+    border: none !important;
+}
+.dig_popmessage_contents {
+    font-family: Yekan;
+}
+.digits_login_form .dig_ma-box .bgdark {
+    background-color: #7c4dff !important;
+}        .digits_login_form .dig-container {
+            background-color: #ffffff;
+            border-radius: 0px;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3)        }
+
+                .digits_login_form .dig-modal-con {
+            border-radius: 0px;
+            box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.3);
+            background: linear-gradient(#ffffff,#ffffff);
+            background-size: cover;
+        }
+
+        
+        .digits_login_form .dig_ma-box .bglight {
+            background-color: #141414;
+        }
+
+
+        
+        .digits_login_form .dig_login_rembe .dig_input_wrapper:before,
+        .digits_login_form .dig-custom-field-type-radio .dig_opt_mult_con .selected:before,
+        .digits_login_form .dig-custom-field-type-radio .dig_opt_mult_con .dig_input_wrapper:before,
+        .digits_login_form .dig-custom-field-type-tac .dig_opt_mult_con .selected:before,
+        .digits_login_form .dig-custom-field-type-checkbox .dig_opt_mult_con .selected:before,
+        .digits_login_form .dig-custom-field-type-tac .dig_opt_mult_con .dig_input_wrapper:before,
+        .digits_login_form .dig-custom-field-type-checkbox .dig_opt_mult_con .dig_input_wrapper:before {
+            background-color: #141414;
+        }
+
+
+                .digits_login_form .dig_sbtncolor {
+            color: #ffffff;
+            background-color: #141414;
+        }
+
+        .digits_login_form .dig_ma-box .dark input[type="submit"], .digits_login_form .dig_ma-box .lighte {
+            color: #ffffff;
+        }
+
+        .digits_login_form .dig_ma-box .bgdark {
+            background-color: #141414;
+        }
+
+        .digits_login_form .dig_sml_box_msg_head,
+        .digits_login_form .dig_ma-box .digits-form-select .select2-selection__rendered,
+        .digits_login_form .dig_ma-box .dark a, .digits_login_form .dig_ma-box .dark .dig-cont-close, .digits_login_form .dig_ma-box .dark,
+        .digits_login_form .dig_ma-box .dark .minput label, .digits_login_form .dig_ma-box .dark .minput input, .digits_login_form .dig_ma-box .darke {
+            color: #141414;
+
+        }
+
+        .digits_login_form .dig_ma-box .countrycodecontainer .dark {
+            border-right: 1px solid #141414 !important;
+        }
+
+        .digits_login_form .dig_ma-box .bgtransborderdark {
+            border: 1px solid;
+            border-color: #141414;
+            background: transparent;
+        }
+
+        .digits_login_form .dig_ma-box .digits-form-select .select2-selection--single {
+            border-bottom: 1px solid;
+            border-color: #141414;
+        }
+
+        .digits_login_form .digits-select .select2-selection .select2-selection__arrow b::after {
+            border-bottom: 1.5px solid#141414;
+            border-right: 1.5px solid#141414;
+        }
+
+        
+        .digits_login_form .minput label {
+            right: 0 !important;
+            left: auto !important;
+        }
+
+            </style>
+<div class="dig_load_overlay">
+<div class="dig_load_content">
+<div class="dig_spinner">
+<div class="dig_double-bounce1"></div>
+<div class="dig_double-bounce2"></div>
+ </div>
+</div>
+</div>
+<div class="digits_login_form">
+<div id="dig-ucr-container" class="dig_rtl dig_lrf_box dig_ma-box dig-box  dig-modal-con-reno dig_pgmdl_1" data-asterisk="1" style="display:none;">
+<div class="dig-content dig-modal-con  dark">
+<div class="digits_bx_cred_frm_container">
+<div class="digits_bx_head">
+<span class="dig-box-login-title">ورود</span>
+<span class="dig-cont-close"><span>&times;</span></span>
+</div>
+<div class="digits_bx_cred_frm">
+<div class="dig_bx_cnt_mdl">
+<style>
+        .dig_ma-box .dig-box-login-title {
+            display: none;
+        }
+
+        .dig_ma-box .digoneclickls .diglogsignup {
+            padding-top: 24px;
+            width: 100%;
+        }
+
+        .dig_ma-box .digoneclickls {
+            float: unset;
+        }
+
+        .dig_ma-box .digloginpage {
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 320px;
+        }
+    </style>
+
+<script>
+        jQuery('.dig-mobmail').on('keypress', function (e) {
+            if (e.which == 13) {
+                jQuery('.dig_login_va_otp').trigger('click');
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div><ul class="digit_cs-list digits_scrollbar " style="display: none;" data-type="list"><li class="dig-cc-visible selected" value="98" data-country="iran">(+98) ایران</li></ul> <div class="mtsnb mtsnb-shown mtsnb-top mtsnb-fixed" id="mtsnb-24730" data-mtsnb-id="24730" style="background-color:#033562;color:#ffffff;">
+<style type="text/css">
+					.mtsnb { position: fixed; -webkit-box-shadow: 0 3px 4px rgba(0, 0, 0, 0.05);box-shadow: 0 3px 4px rgba(0, 0, 0, 0.05);}
+					.mtsnb .mtsnb-container { width: 1080px; font-size: 18px;}
+					.mtsnb a { color: #00aabd;}
+					.mtsnb .mtsnb-button { background-color: #00aabd;}
+				</style>
+<div class="mtsnb-container-outer">
+<div class="mtsnb-container mtsnb-clearfix">
+<div class="mtsnb-button-type mtsnb-content"></div></div>
+<a href="#" class="mtsnb-hide" style="background-color:#033562;color:#ffffff;"><span>+</span></a>
+</div>
+</div>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-147294261-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-147294261-1');
+</script><div class="ux-body-overlay"></div> <script type="text/javascript">
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+<script type='text/javascript' id='password-strength-meter-js-translations'>
+( function( domain, translations ) {
+	var localeData = translations.locale_data[ domain ] || translations.locale_data.messages;
+	localeData[""].domain = domain;
+	wp.i18n.setLocaleData( localeData, domain );
+} )( "default", {"translation-revision-date":"2021-10-20 12:04:09+0000","generator":"GlotPress\/3.0.0-alpha.2","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","plural-forms":"nplurals=1; plural=0;","lang":"fa"},"%1$s is deprecated since version %2$s! Use %3$s instead. Please consider writing more inclusive code.":["%1$s \u0627\u0632 \u0646\u06af\u0627\u0631\u0634%2$s \u0645\u0646\u0633\u0648\u062e  \u0634\u062f\u0647 \u0627\u0633\u062a! \u0628\u0647 \u062c\u0627\u06cc \u0622\u0646 \u0627\u0632 %3$s \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0646\u0645\u0627\u06cc\u06cc\u062f. \u0644\u0637\u0641\u0627\u064b \u0646\u0648\u0634\u062a\u0646 \u06a9\u062f \u0631\u0627 \u0628\u0647 \u0637\u0648\u0631 \u062c\u0627\u0645\u0639\u200c\u062a\u0631 \u062f\u0631 \u0646\u0638\u0631 \u0628\u06af\u06cc\u0631\u06cc\u062f."]}},"comment":{"reference":"wp-admin\/js\/password-strength-meter.js"}} );
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-admin/js/password-strength-meter.min.js?ver=14e7aef3e674f5928b125619481d8afc' id='password-strength-meter-js'></script>
+<script type='text/javascript' id='wc-password-strength-meter-js-extra'>
+/* <![CDATA[ */
+var wc_password_strength_meter_params = {"min_password_strength":"3","stop_checkout":"","i18n_password_error":"\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u06af\u0630\u0631\u0648\u0627\u0698\u0647 \u0642\u0648\u06cc \u062a\u0631 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.","i18n_password_hint":"\u0631\u0627\u0647\u0646\u0645\u0627\u06cc\u06cc: \u0631\u0645\u0632 \u0628\u0627\u06cc\u062f \u062f\u0633\u062a\u06a9\u0645 \u06f7 \u062d\u0631\u0641 \u0628\u0627\u0634\u062f. \u0628\u0631\u0627\u06cc \u0642\u0648\u06cc\u200c\u062a\u0631 \u06a9\u0631\u062f\u0646 \u0622\u0646\u060c \u0627\u0632 \u062d\u0631\u0648\u0641 \u06a9\u0648\u0686\u06a9 \u0648 \u0628\u0632\u0631\u06af \u0627\u0646\u06af\u0644\u06cc\u0633\u06cc\u060c \u0627\u0639\u062f\u0627\u062f \u0648 \u0646\u0645\u0627\u062f\u0647\u0627\u06cc\u06cc \u0645\u0627\u0646\u0646\u062f ! \" \u061f $ % ^ & ) \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u06a9\u0646\u06cc\u062f."};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woocommerce/assets/js/frontend/password-strength-meter.min.js?ver=6.1.1' id='wc-password-strength-meter-js'></script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.6.1.1' id='jquery-blockui-js'></script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.6.1.1' id='js-cookie-js'></script>
+<script type='text/javascript' id='woocommerce-js-extra'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=6.1.1' id='woocommerce-js'></script>
+<script type='text/javascript' id='wc-cart-fragments-js-extra'>
+/* <![CDATA[ */
+var wc_cart_fragments_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","cart_hash_key":"wc_cart_hash_8a88ab12fef8be52bc6d2fb6cd9dc74d","fragment_name":"wc_fragments_8a88ab12fef8be52bc6d2fb6cd9dc74d","request_timeout":"5000"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/woocommerce/assets/js/frontend/cart-fragments.min.js?ver=6.1.1' id='wc-cart-fragments-js'></script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/wp-advanced-support-ticket/assets/js/sweetalert.js' id='wpast-sweetalert-js'></script>
+<script type='text/javascript' id='wpast-scripts-js-extra'>
+/* <![CDATA[ */
+var WPAST_DATA = {"ajax_url":"https:\/\/webkima.com\/wp-admin\/admin-ajax.php","locale":"fa_IR","admin_url":"https:\/\/webkima.com\/wp-admin\/","upload_max":"1","number_files":"0","_extensions":"[\".png\",\".jpg\"]","ticket_submitted":"\u062a\u06cc\u06a9\u062a \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0631\u0633\u0627\u0644 \u0634\u062f.","user_logged":"","view_ticket":"\u0645\u0634\u0627\u0647\u062f\u0647 \u062a\u06cc\u06a9\u062a","error_occurred":"\u062e\u0637\u0627\u06cc\u06cc \u0631\u062e \u062f\u0627\u062f\u0647 \u0627\u0633\u062a!","advanced_editor":"","rating_registered":"\u0627\u0645\u062a\u06cc\u0627\u0632 \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u062f\u0631\u062c \u0634\u062f.","extension_created":"\u0645\u062d\u0635\u0648\u0644 \u062a\u0645\u062f\u06cc\u062f \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u06cc\u062c\u0627\u062f \u0634\u062f. \u0644\u0637\u0641\u0627 \u0635\u0628\u0631 \u06a9\u0646\u06cc\u062f...","go_cart":"\u0631\u0641\u062a\u0646 \u0628\u0647 \u0633\u0628\u062f \u062e\u0631\u06cc\u062f","auto_redirect":"1","fill_all_fields":"\u067e\u0631 \u06a9\u0631\u062f\u0646 \u0647\u0645\u0647 \u0641\u06cc\u0644\u062f\u0647\u0627 \u0636\u0631\u0648\u0631\u0631\u06cc \u0645\u06cc\u200c\u0628\u0627\u0634\u062f!","password_not_match":"\u0631\u0645\u0632\u0647\u0627\u06cc \u0639\u0628\u0648\u0631 \u06cc\u06a9\u0633\u0627\u0646 \u0646\u06cc\u0633\u062a\u0646\u062f!","incorrect_email":"\u0627\u06cc\u0645\u06cc\u0644 \u0635\u062d\u06cc\u062d \u0646\u0645\u06cc\u0628\u0627\u0634\u062f!","enter_valid_mobile":"\u0644\u0637\u0641\u0627 \u06cc\u06a9 \u0634\u0645\u0627\u0631\u0647 \u0647\u0645\u0631\u0627\u0647 \u0645\u0639\u062a\u0628\u0631 \u0648\u0627\u0631\u062f \u0646\u0645\u0627\u06cc\u06cc\u062f!","img_url":"https:\/\/webkima.com\/wp-content\/plugins\/wp-advanced-support-ticket\/assets\/img\/","download":"\u062f\u0627\u0646\u0644\u0648\u062f","upload":"\u0628\u0627\u0631\u06af\u0630\u0627\u0631\u06cc","completed":"\u2714 \u06a9\u0627\u0645\u0644 \u0634\u062f","token":"\u0634\u0646\u0627\u0633\u0647 \u067e\u06cc\u06af\u06cc\u0631\u06cc","ok":"\u062a\u0627\u06cc\u06cc\u062f"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/wp-advanced-support-ticket/assets/js/scripts.js?ver=13.9.3' id='wpast-scripts-js'></script>
+<script type='text/javascript' id='rocket-browser-checker-js-after'>
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-extra'>
+/* <![CDATA[ */
+var RocketPreloadLinksConfig = {"excludeUris":"\/(.+\/)?feed\/?.+\/?|\/(?:.+\/)?embed\/|\/checkout\/|\/cart\/|\/my-account\/|\/wc-api\/v(.*)|\/(index\\.php\/)?wp\\-json(\/.*|$)|\/wp-admin\/|\/logout\/|\/nabikhan\/","usesTrailingSlash":"1","imageExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif","fileExt":"jpg|jpeg|gif|png|tiff|bmp|webp|avif|php|pdf|html|htm","siteUrl":"https:\/\/webkima.com","onHoverDelay":"100","rateThrottle":"3"};
+/* ]]> */
+</script>
+<script type='text/javascript' id='rocket-preload-links-js-after'>
+(function() {
+"use strict";var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},e=function(){function i(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(e,t,n){return t&&i(e.prototype,t),n&&i(e,n),e}}();function i(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function n(e,t){i(this,n),this.browser=e,this.config=t,this.options=this.browser.options,this.prefetched=new Set,this.eventTime=null,this.threshold=1111,this.numOnHover=0}return e(n,[{key:"init",value:function(){!this.browser.supportsLinkPrefetch()||this.browser.isDataSaverModeOn()||this.browser.isSlowConnection()||(this.regex={excludeUris:RegExp(this.config.excludeUris,"i"),images:RegExp(".("+this.config.imageExt+")$","i"),fileExt:RegExp(".("+this.config.fileExt+")$","i")},this._initListeners(this))}},{key:"_initListeners",value:function(e){-1<this.config.onHoverDelay&&document.addEventListener("mouseover",e.listener.bind(e),e.listenerOptions),document.addEventListener("mousedown",e.listener.bind(e),e.listenerOptions),document.addEventListener("touchstart",e.listener.bind(e),e.listenerOptions)}},{key:"listener",value:function(e){var t=e.target.closest("a"),n=this._prepareUrl(t);if(null!==n)switch(e.type){case"mousedown":case"touchstart":this._addPrefetchLink(n);break;case"mouseover":this._earlyPrefetch(t,n,"mouseout")}}},{key:"_earlyPrefetch",value:function(t,e,n){var i=this,r=setTimeout(function(){if(r=null,0===i.numOnHover)setTimeout(function(){return i.numOnHover=0},1e3);else if(i.numOnHover>i.config.rateThrottle)return;i.numOnHover++,i._addPrefetchLink(e)},this.config.onHoverDelay);t.addEventListener(n,function e(){t.removeEventListener(n,e,{passive:!0}),null!==r&&(clearTimeout(r),r=null)},{passive:!0})}},{key:"_addPrefetchLink",value:function(i){return this.prefetched.add(i.href),new Promise(function(e,t){var n=document.createElement("link");n.rel="prefetch",n.href=i.href,n.onload=e,n.onerror=t,document.head.appendChild(n)}).catch(function(){})}},{key:"_prepareUrl",value:function(e){if(null===e||"object"!==(void 0===e?"undefined":r(e))||!1 in e||-1===["http:","https:"].indexOf(e.protocol))return null;var t=e.href.substring(0,this.config.siteUrl.length),n=this._getPathname(e.href,t),i={original:e.href,protocol:e.protocol,origin:t,pathname:n,href:t+n};return this._isLinkOk(i)?i:null}},{key:"_getPathname",value:function(e,t){var n=t?e.substring(this.config.siteUrl.length):e;return n.startsWith("/")||(n="/"+n),this._shouldAddTrailingSlash(n)?n+"/":n}},{key:"_shouldAddTrailingSlash",value:function(e){return this.config.usesTrailingSlash&&!e.endsWith("/")&&!this.regex.fileExt.test(e)}},{key:"_isLinkOk",value:function(e){return null!==e&&"object"===(void 0===e?"undefined":r(e))&&(!this.prefetched.has(e.href)&&e.origin===this.config.siteUrl&&-1===e.href.indexOf("?")&&-1===e.href.indexOf("#")&&!this.regex.excludeUris.test(e.href)&&!this.regex.images.test(e.href))}}],[{key:"run",value:function(){"undefined"!=typeof RocketPreloadLinksConfig&&new n(new RocketBrowserCompatibilityChecker({capture:!0,passive:!0}),RocketPreloadLinksConfig).init()}}]),n}();t.run();
+}());
+</script>
+
+<script type='text/javascript' src='https://webkima.com/wp-content/plugins/digits/assets/js/main.js?ver=7.8.0.2' id='digits-main-script-js'></script>
+<script type='text/javascript' id='digits-login-script-js-extra'>
+/* <![CDATA[ */
+var dig_log_obj = {"direction":"rtl","dig_mobile_no_formatting":"0","dig_hide_ccode":"0","dig_sortorder":"dig_cs_name,dig_cs_username,dig_cs_email,dig_cs_mobilenumber,dig_cs_password","dig_dsb":"-1","show_asterisk":"1","login_mobile_accept":"1","login_mail_accept":"1","login_otp_accept":"1","loginwithotp":"\u0648\u0631\u0648\u062f \u0628\u0627 \u06a9\u062f \u06cc\u06a9\u0628\u0627\u0631\u0645\u0635\u0631\u0641","or":"\u06cc\u0627","captcha_accept":"0","Passwordsdonotmatch":"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631\u0647\u0627 \u0647\u0645\u0633\u0627\u0646 \u0646\u06cc\u0633\u062a\u0646\u062f!","fillAllDetails":"\u0644\u0637\u0641\u0627 \u062a\u0645\u0627\u0645 \u0627\u0637\u0644\u0627\u0639\u0627\u062a \u0645\u0648\u0631\u062f \u0646\u06cc\u0627\u0632 \u0631\u0627 \u067e\u0631 \u06a9\u0646\u06cc\u062f.","accepttac":"\u0644\u0637\u0641\u0627 \u0634\u0631\u0627\u06cc\u0637 \u0648 \u0642\u0648\u0627\u0646\u06cc\u0646 \u0631\u0627 \u0628\u067e\u0630\u06cc\u0631\u06cc\u062f.","resendOtpTime":"120","useStrongPasswordString":"\u0644\u0637\u0641\u0627 \u0631\u0645\u0632\u0639\u0628\u0648\u0631 \u0633\u062e\u062a \u062a\u0631\u06cc \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f.","strong_pass":"0","firebase":"0","mail_accept":"2","pass_accept":"2","mobile_accept":"2","username_accept":"0","ajax_url":"https:\/\/webkima.com\/wp-admin\/admin-ajax.php","appId":"","uri":"\/\/webkima.com\/my-account\/","state":"91d75d1a4a","left":"0","verify_mobile":"0","Registrationisdisabled":"\u062b\u0628\u062a \u0646\u0627\u0645 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0627\u0633\u062a","forgotPasswordisdisabled":"\u0641\u0631\u0627\u0645\u0648\u0634\u06cc \u0631\u0645\u0632\u0639\u0628\u0648\u0631 \u063a\u06cc\u0631\u0641\u0639\u0627\u0644 \u0627\u0633\u062a","invalidlogindetails":"\u0648\u0631\u0648\u062f \u0646\u0627\u0645\u0639\u062a\u0628\u0631 \u0627\u0633\u062a!","invalidapicredentials":"\u0627\u0639\u062a\u0628\u0627\u0631 \u0646\u0627\u0645\u0639\u062a\u0628\u0631 API!","pleasesignupbeforelogginin":"\u0644\u0637\u0641\u0627 \u0642\u0628\u0644 \u0627\u0632 \u0648\u0631\u0648\u062f\u060c \u062b\u0628\u062a \u0646\u0627\u0645 \u06a9\u0646\u06cc\u062f.","pleasetryagain":"\u0644\u0637\u0641\u0627 \u0645\u062c\u062f\u062f \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f!","invalidcountrycode":"\u062f\u0631 \u062d\u0627\u0644 \u062d\u0627\u0636\u0631 \u060c \u0645\u0627 \u0628\u0647 \u06a9\u0627\u0631\u0628\u0631\u0627\u0646 \u06a9\u0634\u0648\u0631 \u0634\u0645\u0627 \u0627\u062c\u0627\u0632\u0647 \u0646\u0645\u06cc \u062f\u0647\u06cc\u0645","Mobilenumbernotfound":"\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u067e\u06cc\u062f\u0627 \u0646\u0634\u062f!","MobileNumberalreadyinuse":"\u0627\u06cc\u0646 \u0634\u0645\u0627\u0631\u0647 \u062f\u0631 \u062d\u0627\u0644 \u062d\u0627\u0636\u0631 \u062f\u0631 \u062d\u0627\u0644 \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0627\u0633\u062a (\u0642\u0628\u0644\u0627 \u062b\u0628\u062a \u0646\u0627\u0645 \u06a9\u0631\u062f\u0647 \u0627\u0633\u062a)!","Error":"\u0639\u062f\u0645 \u0627\u0631\u0633\u0627\u0644 \u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f - \u0627\u0632 \u0645\u062f\u06cc\u0631 \u0633\u0627\u06cc\u062a \u0628\u062e\u0648\u0627\u0647\u06cc\u062f \u062a\u0638\u0646\u06cc\u0645\u0627\u062a \u067e\u0646\u0644 \u067e\u06cc\u0627\u0645\u06a9 \u0631\u0627 \u0628\u0631\u0631\u0633\u06cc \u0646\u0645\u0627\u06cc\u062f","Thisfeaturesonlyworkswithmobilenumber":"\u0627\u06cc\u0646 \u0648\u06cc\u0698\u06af\u06cc \u0641\u0642\u0637 \u0628\u0627 \u0634\u0645\u0627\u0631\u0647 \u062a\u0644\u0641\u0646 \u0645\u0648\u0628\u0627\u06cc\u0644 \u06a9\u0627\u0631 \u0645\u06cc \u06a9\u0646\u062f","InvalidOTP":"\u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f \u0646\u0627\u0645\u0639\u0628\u0631 \u0627\u0633\u062a!","ErrorPleasetryagainlater":"\u062e\u0637\u0627! \u0644\u0637\u0641\u0627 \u0645\u062c\u062f\u062f \u062a\u0644\u0627\u0634 \u06a9\u0646\u06cc\u062f","Passworddoesnotmatchtheconfirmpassword":"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u06cc\u06a9\u0633\u0627\u0646 \u0646\u06cc\u0633\u062a!","Invaliddetails":"\u062c\u0632\u0626\u06cc\u0627\u062a \u0646\u0627\u0645\u0639\u062a\u0628\u0631!","InvalidEmail":"\u0627\u06cc\u0645\u06cc\u0644 \u0646\u0627\u0645\u0639\u062a\u0628\u0631!","InvalidMobileNumber":"\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644 \u0646\u0627\u0645\u0639\u062a\u0628\u0631!","eitherenterpassormob":"\u0634\u0645\u0627\u0631\u0647 \u062a\u0644\u0641\u0646 \u0647\u0645\u0631\u0627\u0647 \u062e\u0648\u062f \u0631\u0627 \u0648\u0627\u0631\u062f \u06a9\u0646\u06cc\u062f \u06cc\u0627 \u0631\u0648\u06cc \u062b\u0628\u062a \u0646\u0627\u0645 \u0628\u0627 \u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u06a9\u0644\u06cc\u06a9 \u06a9\u0646\u06cc\u062f","login":"\u0648\u0631\u0648\u062f","signup":"\u062b\u0628\u062a \u0646\u0627\u0645","ForgotPassword":"\u0641\u0631\u0627\u0645\u0648\u0634 \u0631\u0645\u0632\u0639\u0628\u0648\u0631","Email":"\u0627\u06cc\u0645\u06cc\u0644","Mobileno":"\u0634\u0645\u0627\u0631\u0647 \u0645\u0648\u0628\u0627\u06cc\u0644","ohsnap":"\u062e\u0637\u0627!!!","yay":"\u0628\u0644\u0647!","notice":"\u0627\u0637\u0644\u0627\u0639!","submit":"\u0627\u0631\u0633\u0627\u0644","SubmitOTP":"\u062b\u0628\u062a \u06a9\u062f \u062a\u0627\u06cc\u06cc\u062f","required":"\u0627\u062c\u0628\u0627\u0631\u06cc","select":"(\u0627\u0646\u062a\u062e\u0627\u0628)","login_success":"\u0648\u0631\u0648\u062f \u0628\u0627 \u0645\u0648\u0641\u0642\u06cc\u062a \u0627\u0646\u062c\u0627\u0645 \u0634\u062f, \u062f\u0631 \u062d\u0627\u0644 \u062a\u063a\u06cc\u06cc\u0631 \u0645\u0633\u06cc\u0631..","login_reg_success_msg":"1","nonce":"5468f5afc4"};
+/* ]]> */
+</script>
+<script type="text/javascript">
+            jQuery(document).ready(function ($) {
+                if ($('.woocommerce-MyAccount-navigation-link--tickets').length) {
+                                    }
+                if ($('.dokan-dashboard-menu').length) {
+                                    }
+            });
+
+                    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v652eace1692a40cfa3763df669d7439c1639079717194" integrity="sha512-Gi7xpJR8tSkrpF7aordPZQlW2DLtzUlZcumS8dMQjwDHEnw9I7ZLyiOj/6tZStRBGtGgN6ceN6cMH8z7etPGlw==" data-cf-beacon='{"rayId":"6d2bd5bb0c2a69cb","version":"2021.12.0","r":1,"token":"2d33605c9a3f47c58b3bd3a1094e14b4","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+{% endblock %}

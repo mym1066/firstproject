@@ -1,0 +1,15 @@
+<h2>دسته بندی محصولات</h2>
+<div class="panel-group category-advertis" id="accordian">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a href="/advertis">همه</a></h3>
+        </div>
+    </div>
+    {% for category in categories %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="{% url 'category_advertise' category.name %}">{{ category.title }}</a></h4>
+            </div>
+        </div>
+    {% endfor %}
+</div>
